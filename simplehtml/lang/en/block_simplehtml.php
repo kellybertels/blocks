@@ -9,3 +9,5 @@ $string['blocktitle'] = 'Edit the Title :';
 if (! empty($this->config->text)) {
     $this->content->text = $this->config->text;
 }
+
+//just testing a commit 
