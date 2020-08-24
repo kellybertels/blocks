@@ -16,8 +16,13 @@ class block_simplehtml extends block_base {
           return $this->content;
         }
      
-        $this->content         =  new stdClass;
-        $this->content->text   = 'The content of our SimpleHTML block!';
+        $this->content =  new stdClass;
+        //using user input input - get content
+        if (! empty($this->config->text)) {
+          $this->content->text = $this->config->text;
+        }
+       //hard coded - get content
+        // $this->content->text   = 'The content of our SimpleHTML block!';
         $this->content->footer = 'Footer here...';
      
         return $this->content;
@@ -47,5 +52,8 @@ public function specialization() {
         }    
     }
 }
-    
+public function instance_allow_multiple() {
+    return true;
+  }   
+
 }
