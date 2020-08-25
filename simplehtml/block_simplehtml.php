@@ -1,10 +1,18 @@
 <?php
+function has_config() {return true;}
+
+$allowHTML = get_config('simplehtml', 'Allow_HTML');
+
 class block_simplehtml extends block_base {
     public function init() {
         $this->title = get_string('simplehtml', 'block_simplehtml');
         
        
         
+    }
+    //hides the header - from tutorial exercise
+    public function hide_header() {
+      return true;
     }
 
     
@@ -34,9 +42,19 @@ class block_simplehtml extends block_base {
   if(get_config('simplehtml', 'Allow_HTML') == '1') {
     $data->text = strip_tags($data->text);
   }
- 
+ /* bug here 
+  public function instance_config_save($data, $nolongerused = false) {
+    $data = stripslashes_recursive($data);
+    $this->config = $data;
+    return set_field('block_instance', 
+                     'configdata',
+                      base64_encode(serialize($data)),
+                     'id', 
+                     $this->instance->id);
+  } */
   // And now forward to the default implementation defined in the parent class
   return parent::instance_config_save($data,$nolongerused);
+  
 }
 
 public function specialization() {
@@ -55,5 +73,14 @@ public function specialization() {
 public function instance_allow_multiple() {
     return true;
   }   
+
+  public function html_attributes() {
+    $attributes = parent::html_attributes(); // Get default values
+    $attributes['class'] .= ' block_'. $this->name(); // Append our class to class attribute
+    return $attributes;
+}
+  
+
+  
 
 }

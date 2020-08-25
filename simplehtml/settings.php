@@ -12,3 +12,6 @@ $settings->add(new admin_setting_configcheckbox(
             get_string('descallowhtml', 'block_simplehtml'),
             '0'
         ));
+
+        
+
