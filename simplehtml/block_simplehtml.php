@@ -27,11 +27,8 @@ class block_simplehtml extends block_base {
 public function get_content() {
     if ($this->content !== null) {
       return $this->content;
-    }
- 
-    $this->content         =  new stdClass;
-
-
+    } 
+    $this->content =  new stdClass;
     if (! empty($this->config->text)) {
         $this->content->text = $this->config->text;
     }
@@ -41,15 +38,15 @@ public function get_content() {
     //this 'else' display the default message if the value havent beeing edited yet
     else{
         $this->content->text = 'go to settings (right corner of this box) to insert some value here.';
-    }
-
-
-    $this->content->footer = 'Footer By Kelly Nagy Bertels';
- 
+        }
+    $this->content->footer = 'Footer By Kelly Nagy Bertels'; 
     return $this->content;
 }
 
-
+//this function allows more than one "simplehtml" block be added by the teacher
+public function instance_allow_multiple() {
+    return true;
+  }
 
 
 }
