@@ -48,5 +48,49 @@ public function instance_allow_multiple() {
     return true;
   }
 
+//this means this has a config file, this is the right place to put it so: kelly do not move it!  ...this is not an import as in java!
+  public function has_config() {
+      return true;
+}
 
+
+
+
+
+//this function overrites a function in the moodle, changing how it is saving 
+public function instance_config_save($data,$nolongerused =false) {
+    if(get_config('simplehtml', 'Allow_HTML') === '1') {
+      $data->text = strip_tags($data->text);
+    }
+   
+    // And now forward to the default implementation defined in the parent class
+    return parent::instance_config_save($data,$nolongerused);
+  }
+
+
+// public function html_attributes() {
+//     $attributes = parent::html_attributes(); // Get default values
+//     $attributes['class'] .= ' block_'. $this->name(); // Append our class to class attribute
+//     return $attributes;
+// }
+
+public function html_attributes() {
+    $attributes = parent::html_attributes(); // Get default values
+
+    if(get_config('simplehtml','SET_CSS') == '1')
+    {
+        $attributes['class'].= ' setbg';
+    }
+
+
+
+
+    
+    return $attributes;
+
+}
+
+
+
+//last bracket do not delete
 }
