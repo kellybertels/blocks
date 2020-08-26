@@ -82,10 +82,39 @@ public function html_attributes() {
         $attributes['class'].= ' setbg';
     }
 
+    if(get_config('simplehtml','SET_CSS1') == '1')
+    {
+        $attributes['class'].= ' setbg1';
+    }
+
+    if(get_config('simplehtml','SET_CSS2') == '1')
+    {
+        $attributes['class'].= ' setbg2';
+    }
+    if(get_config('simplehtml','SET_CSS3') == '1')
+    {
+        $attributes['class'].= ' setbg3';
+    }
+    if(get_config('simplehtml','SET_CSS4') == '1')
+    {
+        $attributes['class'].= ' setbg4';
+    }
+    if(get_config('simplehtml','SET_CSS5') == '1')
+    {
+        $attributes['class'].= ' setbg5';
+    }
+    if(get_config('simplehtml','SET_CSSBord') == '1')
+    {
+        $attributes['class'].= ' setborder';
+    }
 
 
+    if(get_config('simplehtml','SET_CSS0') == '1')
+    {
+        $attributes['class'].= ' settext';
+    }
 
-    
+
     return $attributes;
 
 }

@@ -1,8 +1,45 @@
+
+/* 
+from Pinaple color pallete: 
+orange      #fe831c  
+yellow      #fdcf1a 
+light_yellow #faea8b 
+green        #838f5f 
+red          #bd4e00 
+
+
+*/
+
 .setbg{
     background-color: #70AE98 !important;
 }
 
+.setbg1{
+    background-color:  #fe831c   !important;
+}
+
+.setbg2{
+    background-color:   #fdcf1a  !important;
+}
+.setbg3{
+    background-color:#faea8b   !important;
+}
+
+.setbg4{
+    background-color: #838f5f  !important;
+}
+
+.setbg5{
+    background-color:  #bd4e00  !important;
+}
+
+
 .setborder{
+    border-color: black !important;
+   
     border-width: 5px solid !important;
 }
 
+.settext{
+    color:white !important;
+}

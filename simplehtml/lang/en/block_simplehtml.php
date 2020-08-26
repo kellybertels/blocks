@@ -13,10 +13,31 @@ $string['blockstring']='Type the content here:';
 $string['labelallowhtml']='label allow html:';
 $string['descallowhtml']='Tlabel disalow html:';
 
-
-
 $string['headerconfig']='Appearance';
 $string['descconfig']='Allow or disallow personalized style customisations related to how the block will look like. ';
-$string['labelallowcss']='allow aditional CSS classes';
-$string['descallowcss']='disallow aditional CSS classes';
+$string['labelallowcss']='allow aditional CSS -light green background here ';
+$string['descallowcss']='disallow aditional CSS - light green background here';
+
+$string['allowbg1']='Enable orange background';
+$string['descallowbg1']='Disable orange background';
+$string['allowbg2']='Enable yellow background';
+$string['descallowbg2']='Disable yellow background';
+$string['allowbg3']='Enable light yellow background';
+$string['descallowbg3']='Disable light yellow background';
+$string['allowbg4']='Enable green background';
+$string['descallowbg4']='Disable green background';
+$string['allowbg5']='Enable red background';
+$string['descallowbg5']='Disable red background';
+
+$string['allowtext']='Enable white text color';
+$string['descallowtext']='Disable white text color';
+
+$string['allowbord']='Enable solid border around the block';
+$string['descallowbord']='Disable solid border around the block';
+
+
+
+
+
+
 

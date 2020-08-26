@@ -33,12 +33,78 @@ $settings->add(new admin_setting_configcheckbox(
     //the 0 here means that as default the check box will be unchecked.
 ));
 
-//options for allow CSS classes 
+//options for allow CSS 
 $settings->add(new admin_setting_configcheckbox(
     'simplehtml/SET_CSS',
     //the simplehtml creates a table for my block (isn't Globally stored)
     get_string('labelallowcss', 'block_simplehtml'),
     get_string('descallowcss', 'block_simplehtml'),
+    '0'
+    //the 0 here means that as default the check box will be unchecked.
+));
+
+//options for allow CSS 
+$settings->add(new admin_setting_configcheckbox(
+    'simplehtml/SET_CSS1',
+    //the simplehtml creates a table for my block (isn't Globally stored)
+    get_string('allowbg1', 'block_simplehtml'),
+    get_string('descallowbg1', 'block_simplehtml'),
+    '0'
+    //the 0 here means that as default the check box will be unchecked.
+));
+
+//options for allow CSS 
+$settings->add(new admin_setting_configcheckbox(
+    'simplehtml/SET_CSS2',
+    //the simplehtml creates a table for my block (isn't Globally stored)
+    get_string('allowbg2', 'block_simplehtml'),
+    get_string('descallowbg2', 'block_simplehtml'),
+    '0'
+    //the 0 here means that as default the check box will be unchecked.
+));
+//options for allow CSS 
+$settings->add(new admin_setting_configcheckbox(
+    'simplehtml/SET_CSS3',
+    //the simplehtml creates a table for my block (isn't Globally stored)
+    get_string('allowbg3', 'block_simplehtml'),
+    get_string('descallowbg3', 'block_simplehtml'),
+    '0'
+    //the 0 here means that as default the check box will be unchecked.
+));
+//options for allow CSS 
+$settings->add(new admin_setting_configcheckbox(
+    'simplehtml/SET_CSS4',
+    //the simplehtml creates a table for my block (isn't Globally stored)
+    get_string('allowbg4', 'block_simplehtml'),
+    get_string('descallowbg4', 'block_simplehtml'),
+    '0'
+    //the 0 here means that as default the check box will be unchecked.
+));
+//options for allow CSS 
+$settings->add(new admin_setting_configcheckbox(
+    'simplehtml/SET_CSS5',
+    //the simplehtml creates a table for my block (isn't Globally stored)
+    get_string('allowbg5', 'block_simplehtml'),
+    get_string('descallowbg5', 'block_simplehtml'),
+    '0'
+    //the 0 here means that as default the check box will be unchecked.
+));
+
+$settings->add(new admin_setting_configcheckbox(
+    'simplehtml/SET_CSSBord',
+    //the simplehtml creates a table for my block (isn't Globally stored)
+    get_string('allowbord', 'block_simplehtml'),
+    get_string('descallowbord', 'block_simplehtml'),
+    '0'
+    //the 0 here means that as default the check box will be unchecked.
+));
+
+//options for allow CSS 
+$settings->add(new admin_setting_configcheckbox(
+    'simplehtml/SET_CSS0',
+    //the simplehtml creates a table for my block (isn't Globally stored)
+    get_string('allowtext', 'block_simplehtml'),
+    get_string('descallowtext', 'block_simplehtml'),
     '0'
     //the 0 here means that as default the check box will be unchecked.
 ));
