@@ -4,9 +4,6 @@ class block_simplehtml extends block_base {
         $this->title = get_string('simplehtml', 'block_simplehtml');
     }
     // The PHP tag and the curly bracket for the class definition 
-
-
-
     // will only be closed after there is another function added in the next section.
 
     public function specialization() {
@@ -22,8 +19,6 @@ class block_simplehtml extends block_base {
             }    
         }
     }
-
-
 public function get_content() {
     if ($this->content !== null) {
       return $this->content;
@@ -52,11 +47,6 @@ public function instance_allow_multiple() {
   public function has_config() {
       return true;
 }
-
-
-
-
-
 //this function overrites a function in the moodle, changing how it is saving 
 public function instance_config_save($data,$nolongerused =false) {
     if(get_config('simplehtml', 'Allow_HTML') === '1') {
@@ -81,12 +71,10 @@ public function html_attributes() {
     {
         $attributes['class'].= ' setbg';
     }
-
     if(get_config('simplehtml','SET_CSS1') == '1')
     {
         $attributes['class'].= ' setbg1';
     }
-
     if(get_config('simplehtml','SET_CSS2') == '1')
     {
         $attributes['class'].= ' setbg2';
@@ -107,18 +95,22 @@ public function html_attributes() {
     {
         $attributes['class'].= ' setborder';
     }
-
-
     if(get_config('simplehtml','SET_CSS0') == '1')
     {
         $attributes['class'].= ' settext';
     }
-
-
     return $attributes;
 
 }
 
+//this will allow the block to be added just in especific pages index, calendar-view and will not be able to be add in 'course-view social'
+public function applicable_formats() {
+    return array(
+        'site-index' => true,
+        'calendar-view' => true, 
+        'course-view-social' => false);
+      
+  }
 
 
 //last bracket do not delete
