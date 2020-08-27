@@ -1,5 +1,8 @@
 <?php
-class block_simplehtml extends block_base {
+//security extra line to open moodle just internally not from external
+defined('MOODLE_INTERNAL') || die();
+
+class block_simplehtml extends block_list {
     public function init() {
         $this->title = get_string('simplehtml', 'block_simplehtml');
     }
@@ -19,6 +22,39 @@ class block_simplehtml extends block_base {
             }    
         }
     }
+
+
+    public function get_content() {
+        global $OUTPUT;
+        if ($this->content !== null) {
+          return $this->content;
+        }
+       
+        $this->content         = new stdClass;
+        $this->content->items  = array();
+        $this->content->icons  = array();
+        $this->content->footer = 'Footer here...';
+
+        $icon = $OUTPUT->pix_icon('list_icon', 'listicon', 'block_simplehtml', []);
+
+        // Placing the icon within the link text.
+        $this->content->items[] = html_writer::tag('a', $icon . 'Menu Option 1', array('href' => '/user/files.php'));
+
+        //$this->content->icons[] = new \pix_icon('list_icon', 'listicon', 'block_simplehtml');
+      
+
+        //tutorial example ( do not work)
+       // $this->content->icons[] = html_writer::empty_tag('img', array('src' => 'images/icons/1.gif', 'class' => 'icon'));
+ 
+   
+        // Add more list items here
+  
+
+        return $this->content;
+      }
+
+/*  this was replaced by the get_content function above as recommended at "Additional Content Types" from the tutorial to create a block list
+
 public function get_content() {
     if ($this->content !== null) {
       return $this->content;
@@ -27,8 +63,8 @@ public function get_content() {
     if (! empty($this->config->text)) {
         $this->content->text = $this->config->text;
     }
-    /*//once the task of getting the contentfor the block , will go dinamically now using the if statement above this line bellow can be commented out
-    $this->content->text   = 'The content of our SimpleHTML block!'; */
+    //once the task of getting the contentfor the block , will go dinamically now using the if statement above this line bellow can be commented out
+    $this->content->text   = 'The content of our SimpleHTML block!'; 
 
     //this 'else' display the default message if the value havent beeing edited yet
     else{
@@ -37,6 +73,11 @@ public function get_content() {
     $this->content->footer = 'Footer By Kelly Nagy Bertels'; 
     return $this->content;
 }
+*/
+
+
+
+
 
 //this function allows more than one "simplehtml" block be added by the teacher
 public function instance_allow_multiple() {
@@ -104,13 +145,16 @@ public function html_attributes() {
 }
 
 //this will allow the block to be added just in especific pages index, calendar-view and will not be able to be add in 'course-view social'
-public function applicable_formats() {
+/*public function applicable_formats() {
     return array(
         'site-index' => true,
+        'my-index' => true,
         'calendar-view' => true, 
         'course-view-social' => false);
       
   }
+*/
+
 
 
 //last bracket do not delete
