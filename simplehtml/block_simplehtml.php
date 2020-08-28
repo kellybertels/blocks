@@ -35,21 +35,17 @@ class block_simplehtml extends block_list {
         $this->content->icons  = array();
         $this->content->footer = 'Footer here...';
 
-        $icon = $OUTPUT->pix_icon('list_icon', 'listicon', 'block_simplehtml', []);
-
+        $icon = $OUTPUT->pix_icon('teacher_list_icon', 'listicon', 'block_simplehtml', []);
         // Placing the icon within the link text.
         $this->content->items[] = html_writer::tag('a', $icon . 'Menu Option 1', array('href' => '/user/files.php'));
 
-        //$this->content->icons[] = new \pix_icon('list_icon', 'listicon', 'block_simplehtml');
-      
-
+    
         //tutorial example ( do not work)
        // $this->content->icons[] = html_writer::empty_tag('img', array('src' => 'images/icons/1.gif', 'class' => 'icon'));
  
    
         // Add more list items here
-  
-
+   
         return $this->content;
       }
 
