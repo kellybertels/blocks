@@ -33,7 +33,13 @@ class block_simplehtml extends block_list {
         $this->content         = new stdClass;
         $this->content->items  = array();
         $this->content->icons  = array();
-        $this->content->footer = 'Footer here...';
+
+      //replacing footer to function from Advanced Blocks tutorial
+      global $COURSE; 
+        // The other code.
+         $url = new moodle_url('/blocks/simplehtml/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
+        $this->content->footer = html_writer::link($url, get_string('addpage', 'block_simplehtml'));
+
 
         $icon = $OUTPUT->pix_icon('teacher_list_icon', 'listicon', 'block_simplehtml', []);
         // Placing the icon within the link text.
@@ -48,6 +54,8 @@ class block_simplehtml extends block_list {
    
         return $this->content;
       }
+
+      
 
 /*  this was replaced by the get_content function above as recommended at "Additional Content Types" from the tutorial to create a block list
 
