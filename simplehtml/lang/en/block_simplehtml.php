@@ -33,7 +33,21 @@ $string['allowbord']='Enable solid border around the block';
 $string['descallowbord']='Disable solid border around the block';
 
 $string['addpage']='Add Page';
-$string ['textfields'] ='text field here';
+$string ['textfields'] ='Area for user input Text ';
+$string['edithtml'] = 'Form Example from Advanced Blocks Tutorial';
+$string['simplehtmlsettings'] = 'Simple HTML Settings here';
+$string['editpage']= 'Edit the Page';
+$string['pagetitle']='insert the subject:';
+$string['displayedhtml']= 'Type what you want';
+$string['displaypicture']='display the picture?';
+$string['picturefields']='Pictures area:';
+$string['picturedesc']='type an alternative description for the picture that you selected';
+$string['pictureselect']='Select a picture';
+$string['green']='autum leaf icon';
+$string['red']='male user icon wearing a dark shirt';
+$string['blue']='blue message dialog icon';
+
+
 
 
 
