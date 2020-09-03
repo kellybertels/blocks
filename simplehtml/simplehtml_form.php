@@ -70,7 +70,11 @@ $attributes = array('size' => '50', 'maxlength' => '100');
 $mform->addElement('text', 'description', get_string('picturedesc', 'block_simplehtml'), $attributes);
 $mform->setType('description', PARAM_TEXT);
 
-
+// add optional grouping
+$mform->addElement('header', 'optional', get_string('optional', 'form'), null, false);
+// add date_time selector in optional area
+$mform->addElement('date_time_selector', 'displaydate', get_string('displaydate', 'block_simplehtml'), array('optional' => true));
+$mform->setAdvanced('optional');
 
 /* 
 // add optional grouping
@@ -80,10 +84,28 @@ $mform->addElement('date_time_selector', 'displaydate', get_string('displaydate'
 $mform->setAdvanced('optional');
  */
 
+
+//adding moodle buttons submit and cancel
+$this->add_action_buttons();
+
+
+
+//this fix the missign param error reference: https://moodle.org/mod/forum/discuss.php?d=255802
+$mform->addElement('hidden', 'id', $this->_customdata['id']);
+$mform->setType('id', PARAM_INT);
+
+
+
+// hidden elements moodle uses it to keep track of the data
+            //sets added here as well to fix the missing param error 
+$mform->addElement('hidden', 'blockid');
+$mform->setType('blockid',0,PARAM_INT);
+$mform->addElement('hidden', 'courseid');
+$mform->setType('courseid',0, PARAM_INT);
+
+
+
 //last bracket of the function definition() do not delete!!!
-}
-
-
-
-    
+}    
+//last bracket for simplehtml_form do not delete
 }

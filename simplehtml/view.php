@@ -28,6 +28,11 @@ $PAGE->set_heading(get_string('edithtml', 'block_simplehtml'));
  
 $simplehtml = new simplehtml_form(); 
 
+//related to buttons section at adv blocks tutorial 
+$toform['blockid'] = $blockid;
+$toform['courseid'] = $courseid;
+$simplehtml->set_data($toform);
+
 echo $OUTPUT->header();
 
 $settingsnode = $PAGE->settingsnav->add(get_string('simplehtmlsettings', 'block_simplehtml'));

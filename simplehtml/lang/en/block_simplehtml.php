@@ -46,6 +46,7 @@ $string['pictureselect']='Select a picture';
 $string['green']='autum leaf icon';
 $string['red']='male user icon wearing a dark shirt';
 $string['blue']='blue message dialog icon';
+$string['displaydate']= 'select a date to register';
 
 
 
