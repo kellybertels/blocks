@@ -41,7 +41,10 @@ $editnode = $settingsnode->add(get_string('editpage', 'block_simplehtml'), $edit
 $editnode->make_active();
 
 
-
+// We need to add code to appropriately act on and store the submitted data
+if (!$DB->insert_record('block_simplehtml', $fromform)) {
+    print_error('inserterror', 'block_simplehtml');
+}
 
 if($simplehtml->is_cancelled()) {
     // Cancelled forms redirect to the course main page.
@@ -52,14 +55,14 @@ if($simplehtml->is_cancelled()) {
     // We need to add code to appropriately act on and store the submitted data
     // but for now we will just redirect back to the course main page.
     $courseurl = new moodle_url('/course/view.php', array('id' => $courseid));
-    print_object ($fromform) ;
-   // redirect($courseurl);
+    //for testing if array is printing 
+   // print_object ($fromform) ;
+    redirect($courseurl);
     
     
 } else {
     // form didn't validate or this is the first display
-    $site = get_site();
-  
+    $site = get_site();  
     $simplehtml->display();
     echo $OUTPUT->footer();
    
