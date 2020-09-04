@@ -23,38 +23,79 @@ class block_simplehtml extends block_list {
         }
     }
 
-
     public function get_content() {
-        global $OUTPUT;
+    global $OUTPUT, $COURSE, $DB;
+
+    if ($this->content !== null) {
+        return $this->content;
+      }  
+    if (!empty($this->config->text)) {
+        $this->content->text = $this->config->text;
+    }    
+  
+    $this->content         = new stdClass;
+    $this->content->items  = array();
+    $this->content->icons  = array();
+
+ // The other code.
+ $url = new moodle_url('/blocks/simplehtml/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
+ $this->content->footer = html_writer::link($url, get_string('addpage', 'block_simplehtml'));
+
+ $icon = $OUTPUT->pix_icon('teacher_list_icon', 'listicon', 'block_simplehtml', []);
+ // Placing the icon within the link text.
+ $this->content->items[] = html_writer::tag('a', $icon . 'Menu Option 1', array('href' => '/user/files.php'));
+
+ //tutorial example ( do not work)
+// $this->content->icons[] = html_writer::empty_tag('img', array('src' => 'images/icons/1.gif', 'class' => 'icon'));
+
+ // Add more list items here   
+ return $this->content;
+
+    // This is the new code.
+    if ($simplehtmlpages = $DB->get_records('mdl_block_simplehtml', array('blockid' => $this->instance->id))) {
+        $this->content->text .= html_writer::start_tag('ul');
+        foreach ($simplehtmlpages as $simplehtmlpage) {
+            $url = new moodle_url('/blocks/simplehtml/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'id' => $simplehtmlpage->id, 'viewpage' => '1'));
+            $this->content->text .= html_writer::start_tag('li');
+            $this->content->text .= html_writer::link($url, $simplehtmlpage->pagetitle);
+            $this->content->text .= html_writer::end_tag('li');
+        }
+        $this->content->text .= html_writer::end_tag('ul');
+    }
+
+
+    }
+
+
+
+/* 
+    public function get_content() {
+        global $OUTPUT, $COURSE, $DB; 
+
         if ($this->content !== null) {
           return $this->content;
-        }
-       
+        }       
         $this->content         = new stdClass;
         $this->content->items  = array();
         $this->content->icons  = array();
 
       //replacing footer to function from Advanced Blocks tutorial
-      global $COURSE; 
+    
         // The other code.
          $url = new moodle_url('/blocks/simplehtml/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id));
         $this->content->footer = html_writer::link($url, get_string('addpage', 'block_simplehtml'));
 
-
         $icon = $OUTPUT->pix_icon('teacher_list_icon', 'listicon', 'block_simplehtml', []);
         // Placing the icon within the link text.
         $this->content->items[] = html_writer::tag('a', $icon . 'Menu Option 1', array('href' => '/user/files.php'));
-
     
         //tutorial example ( do not work)
        // $this->content->icons[] = html_writer::empty_tag('img', array('src' => 'images/icons/1.gif', 'class' => 'icon'));
- 
    
-        // Add more list items here
-   
+        // Add more list items here   
         return $this->content;
       }
-
+ */
       
 
 /*  this was replaced by the get_content function above as recommended at "Additional Content Types" from the tutorial to create a block list

@@ -14,6 +14,11 @@ $courseid = required_param('courseid', PARAM_INT);
 $blockid = required_param('blockid', PARAM_INT); 
 // Next look for optional variables.
 $id = optional_param('id', 0, PARAM_INT);
+
+
+//"Final Alterations" section at adv Block tutorial
+$id = optional_param('id', 0, PARAM_INT);
+$viewpage = optional_param('viewpage', false, PARAM_BOOL);
  
  
 if (!$course = $DB->get_record('course', array('id' => $courseid))) {
@@ -40,11 +45,20 @@ $editurl = new moodle_url('/blocks/simplehtml/view.php', array('id' => $id, 'cou
 $editnode = $settingsnode->add(get_string('editpage', 'block_simplehtml'), $editurl);
 $editnode->make_active();
 
-
+/* 
 // We need to add code to appropriately act on and store the submitted data
 if (!$DB->insert_record('block_simplehtml', $fromform)) {
     print_error('inserterror', 'block_simplehtml');
+} */
+
+//final alterations section
+if ($viewpage) {
+    $simplehtmlpage = $DB->get_record('block_simplehtml', array('id' => $id));
+    block_simplehtml_print_page($simplehtmlpage);
+} else {
+    $simplehtml->display();
 }
+
 
 if($simplehtml->is_cancelled()) {
     // Cancelled forms redirect to the course main page.
@@ -56,8 +70,9 @@ if($simplehtml->is_cancelled()) {
     // but for now we will just redirect back to the course main page.
     $courseurl = new moodle_url('/course/view.php', array('id' => $courseid));
     //for testing if array is printing 
-   // print_object ($fromform) ;
-    redirect($courseurl);
+    print_object ($fromform) ;
+   
+   // redirect($courseurl);
     
     
 } else {
@@ -67,6 +82,9 @@ if($simplehtml->is_cancelled()) {
     echo $OUTPUT->footer();
    
 }
+
+
+
 
 
 
