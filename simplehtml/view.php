@@ -51,13 +51,7 @@ if (!$DB->insert_record('block_simplehtml', $fromform)) {
     print_error('inserterror', 'block_simplehtml');
 } */
 
-//final alterations section
-if ($viewpage) {
-    $simplehtmlpage = $DB->get_record('block_simplehtml', array('id' => $id));
-    block_simplehtml_print_page($simplehtmlpage);
-} else {
-    $simplehtml->display();
-}
+
 
 
 if($simplehtml->is_cancelled()) {
@@ -66,14 +60,53 @@ if($simplehtml->is_cancelled()) {
     redirect($courseurl);
 
 } else if ($fromform = $simplehtml->get_data()) {
-    // We need to add code to appropriately act on and store the submitted data
-    // but for now we will just redirect back to the course main page.
+
+
     $courseurl = new moodle_url('/course/view.php', array('id' => $courseid));
+ 
     //for testing if array is printing 
-    print_object ($fromform) ;
+   // print_object ($fromform) ;
    
    // redirect($courseurl);
     
+// We need to add code to appropriately act on and store the submitted data
+if ($fromform->id != 0) {
+    if (!$DB->update_record('block_simplehtml', $fromform)) {
+        print_error('updateerror', 'block_simplehtml');
+    }
+} else {
+    if (!$DB->insert_record('block_simplehtml', $fromform)) {
+        print_error('inserterror', 'block_simplehtml');
+    }
+}
+
+
+// form didn't validate or this is the first display
+$site = get_site();
+
+
+if ($id) {
+    $simplehtmlpage = $DB->get_record('block_simplehtml', array('id' => $id));
+    if($viewpage) {
+        block_simplehtml_print_page($simplehtmlpage);
+    } else {
+        $simplehtml->set_data($simplehtmlpage);
+        $simplehtml->display();
+    }
+} else {
+    $simplehtml->display();
+}
+
+/* 
+this was eddited because the editing functionality part added the code above , comment it out will avoid display twice
+//final alterations code / display page 
+if ($viewpage) {
+    $simplehtmlpage = $DB->get_record('block_simplehtml', array('id' => $id));
+    block_simplehtml_print_page($simplehtmlpage);
+} else {
+    $simplehtml->display(); 
+} */
+
     
 } else {
     // form didn't validate or this is the first display
@@ -82,10 +115,3 @@ if($simplehtml->is_cancelled()) {
     echo $OUTPUT->footer();
    
 }
-
-
-
-
-
-
-?>

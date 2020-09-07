@@ -24,11 +24,11 @@ class block_simplehtml extends block_list {
     }
 
     public function get_content() {
-    global $OUTPUT, $COURSE, $DB;
+    global $OUTPUT, $COURSE, $DB, $PAGE;
 
     if ($this->content !== null) {
         return $this->content;
-      }  
+      }   
     if (!empty($this->config->text)) {
         $this->content->text = $this->config->text;
     }    
@@ -51,20 +51,70 @@ class block_simplehtml extends block_list {
  // Add more list items here   
  return $this->content;
 
-    // This is the new code.
-    if ($simplehtmlpages = $DB->get_records('mdl_block_simplehtml', array('blockid' => $this->instance->id))) {
-        $this->content->text .= html_writer::start_tag('ul');
-        foreach ($simplehtmlpages as $simplehtmlpage) {
-            $url = new moodle_url('/blocks/simplehtml/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'id' => $simplehtmlpage->id, 'viewpage' => '1'));
-            $this->content->text .= html_writer::start_tag('li');
-            $this->content->text .= html_writer::link($url, $simplehtmlpage->pagetitle);
-            $this->content->text .= html_writer::end_tag('li');
+   // This is the new code.
+if ($simplehtmlpages = $DB->get_records('block_simplehtml', array('blockid' => $this->instance->id))) {
+    $this->content->text .= html_writer::start_tag('ul');
+    foreach ($simplehtmlpages as $simplehtmlpage) {
+        $url = new moodle_url('/blocks/simplehtml/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'id' => $simplehtmlpage->id, 'viewpage' => '1'));
+        $this->content->text .= html_writer::start_tag('li');
+        $this->content->text .= html_writer::link($url, $simplehtmlpage->pagetitle);
+        $this->content->text .= html_writer::end_tag('li');
+    }
+    $this->content->text .= html_writer::end_tag('ul');
+}
+
+
+// Check to see if we are in editing mode
+$canmanage = $PAGE->user_is_editing($this->instance->id);
+ 
+if ($simplehtmlpages = $DB->get_records('block_simplehtml', array('blockid' => $this->instance->id))) {
+    $this->content->text .= html_writer::start_tag('ul');
+    foreach ($simplehtmlpages as $simplehtmlpage) {
+        if ($canmanage) {
+            $pageparam = array('blockid' => $this->instance->id, 
+                  'courseid' => $COURSE->id, 
+                  'id' => $simplehtmlpage->id);
+            $editurl = new moodle_url('/blocks/simplehtml/view.php', $pageparam);
+            $editpicurl = new moodle_url('/pix/t/edit.gif');
+            $edit = html_writer::link($editurl, html_writer::tag('img', '', array('src' => $editpicurl, 'alt' => get_string('edit'))));
+        } else {
+            $edit = '';
         }
-        $this->content->text .= html_writer::end_tag('ul');
+        $pageurl = new moodle_url('/blocks/simplehtml/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'id' => $simplehtmlpage->id, 'viewpage' => '1'));
+       
+       
+       
+       
+       
+       
+        $this->content->text .= html_writer::start_tag('li');
+        $this->content->text .= html_writer::link($pageurl, $simplehtmlpage->pagetitle);
+        $this->content->text .= $edit;
+        $this->content->text .= html_writer::end_tag('li');
     }
 
 
-    }
+//delete function 
+ //(I think organize code like that is very wrong... ) just following the tutorial from now
+ $deleteparam = array('id' => $simplehtmlpage->id, 'courseid' => $COURSE->id);
+ $deleteurl = new moodle_url('/blocks/simplehtml/delete.php', $deleteparam);
+ $deletepicurl = new moodle_url('/pix/t/delete.gif');
+ $delete = html_writer::link($deleteurl, html_writer::tag('img', '', array('src' => $deletepicurl, 'alt' => get_string('delete'))));
+} else {
+ $edit = '';
+ $delete = '';
+}
+$pageurl = new moodle_url('/blocks/simplehtml/view.php', array('blockid' => $this->instance->id, 'courseid' => $COURSE->id, 'id' => $simplehtmlpage->id, 'viewpage' => true));
+$this->content->text .= html_writer::start_tag('li');
+$this->content->text .= html_writer::link($pageurl, $simplehtmlpage->pagetitle);
+$this->content->text .= $edit;
+$this->content->text .= $delete;
+
+
+
+
+//last bracket of get content funtion
+}
 
 
 
