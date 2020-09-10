@@ -48,7 +48,8 @@ $string['red']='male user icon wearing a dark shirt';
 $string['blue']='blue message dialog icon';
 $string['displaydate']= 'select a date to register';
 
-
+$string['simplehtml:viewpages'] = 'View Simple HTML Pages';
+$string['simplehtml:managepages'] = 'Manage Simple HTML Pages';
 
 
 

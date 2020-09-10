@@ -15,7 +15,7 @@ class simplehtml_form extends moodleform
         $mform->addElement('header', 'displayinfo', get_string('textfields', 'block_simplehtml'));
 
         $mform->addElement('text', 'pagetitle', get_string('pagetitle', 'block_simplehtml'));
-        $mform->setType('pagetitle', PARAM_RAW);
+        $mform->setType('pagetitle', PARAM_TEXT);
         $mform->addRule('pagetitle', null, 'required', null, 'client');
 
         /*
@@ -31,6 +31,7 @@ class simplehtml_form extends moodleform
         // add filename selection.
         $mform->addElement('filepicker', 'filename', get_string('file'), null, array('accepted_types' => '*'));
 
+    
         // add picture fields grouping
         $mform->addElement('header', 'picfield', get_string('picturefields', 'block_simplehtml'), null, false);
 
@@ -94,6 +95,8 @@ $mform->setAdvanced('optional');
 
         //this fix the missign param error reference: https://moodle.org/mod/forum/discuss.php?d=255802
         $mform->addElement('hidden', 'id', $this->_customdata['id']);
+       // $mform->addElement('hidden','id','0');
+
         $mform->setType('id', PARAM_INT);
 
 

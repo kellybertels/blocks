@@ -1,26 +1,35 @@
+
 <?php
-    $capabilities = array(
+
+defined('MOODLE_INTERNAL') || die();
  
-    'block/simplehtml:myaddinstance' => array(
-        'captype' => 'write',
-        'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' => array(
-            'user' => CAP_ALLOW
-        ),
+$capabilities = array(
  
-        'clonepermissionsfrom' => 'moodle/my:manageblocks'
-    ),
+    'block/simplehtml:viewpages' => array(
  
-    'block/simplehtml:addinstance' => array(
-        'riskbitmask' => RISK_SPAM | RISK_XSS,
- 
-        'captype' => 'write',
-        'contextlevel' => CONTEXT_BLOCK,
-        'archetypes' => array(
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_COURSE,
+        'legacy' => array(
+            'guest' => CAP_PREVENT,
+            'student' => CAP_ALLOW,
+            'teacher' => CAP_ALLOW,
             'editingteacher' => CAP_ALLOW,
+            'coursecreator' => CAP_ALLOW,
             'manager' => CAP_ALLOW
-        ),
- 
-        'clonepermissionsfrom' => 'moodle/site:manageblocks'
+        )
     ),
+ 
+    'block/simplehtml:managepages' => array(
+ 
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_COURSE,
+        'legacy' => array(
+            'guest' => CAP_PREVENT,
+            'student' => CAP_PREVENT,
+            'teacher' => CAP_PREVENT,
+            'editingteacher' => CAP_ALLOW,
+            'coursecreator' => CAP_ALLOW,
+            'manager' => CAP_ALLOW
+        )
+    )
 );

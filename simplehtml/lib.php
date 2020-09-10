@@ -9,7 +9,7 @@ function block_simplehtml_images()
 }
 
 
-function block_simplehtml_print_page($simplehtml, $return = false)
+function block_simplehtml_print_page($simplehtml, $return =false)
 {
 
     global $OUTPUT, $COURSE;
@@ -20,12 +20,13 @@ function block_simplehtml_print_page($simplehtml, $return = false)
     if ($simplehtml->displaydate) {
         $display .= userdate($simplehtml->displaydate);
 
-
+      
         $display .= html_writer::start_tag('div', array('class' => 'simplehtml displaydate'));
         $display .= userdate($simplehtml->displaydate);
         $display .= html_writer::end_tag('div');
 
-        $display .= clean_text($simplehtml->displaytext);
+        //display text
+        $display .= clean_text($simplehtml->displaytext); 
         //close the box
         $display .= $OUTPUT->box_end();
 
@@ -40,5 +41,6 @@ function block_simplehtml_print_page($simplehtml, $return = false)
             $display .= html_writer::end_tag('p');
             $display .= $OUTPUT->box_end();
         }
+        
     }
 }

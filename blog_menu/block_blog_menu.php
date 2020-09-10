@@ -48,6 +48,11 @@ class block_blog_menu extends block_base {
     function instance_allow_config() {
         return true;
     }
+    
+    public function instance_delete() {
+        global $DB;
+        $DB->delete_records('block_simplehtml', array('blockid' => $this->instance->id));
+    }
 
     function get_content() {
         global $CFG;
